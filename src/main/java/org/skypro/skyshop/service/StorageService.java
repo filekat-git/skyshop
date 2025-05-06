@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -39,9 +40,13 @@ public class StorageService {
         return mapElements;
     }
 
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id));
+    }
+
     private void createElementsAndFillCollections() {
 
-        UUID id = null;
+        UUID id;
 
         try {
             id = UUID.randomUUID();

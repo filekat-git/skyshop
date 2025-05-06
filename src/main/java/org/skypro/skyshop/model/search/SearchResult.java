@@ -29,12 +29,12 @@ public class SearchResult {
         return new SearchResult(searchable.getID(), searchable.getName(), searchable.getSearchTerm());
     }
 
-    @Override
-    public String toString() {
-        return "SearchResult{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", contentType='" + getContentType() + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "SearchResult{" +
+//                "id=" + getId() +
+//                ", name='" + getName() + '\'' +
+//                ", contentType='" + getContentType() + '\'' +
+//                '}';
+//    }
 }
