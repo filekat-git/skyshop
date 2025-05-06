@@ -2,7 +2,6 @@ package org.skypro.skyshop.controller;
 
 import org.skypro.skyshop.dto.UserBasket;
 import org.skypro.skyshop.model.article.Article;
-import org.skypro.skyshop.model.basket.ProductBasket;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.search.Searchable;
@@ -23,49 +22,47 @@ public class ShopController {
     private final StorageService storageService;
     private final SearchService searchService;
     private final BasketService basketService;
-    private final ProductBasket productBasket;
 
-    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService,
-                          ProductBasket productBasket) {
+    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService) {
         this.storageService = storageService;
         this.searchService = searchService;
         this.basketService = basketService;
-        this.productBasket = productBasket;
     }
 
     @GetMapping
-    public String Greetings(){
+    public String Greetings() {
         return "Welcome to SkyShop";
     }
 
     @GetMapping("/products")
-    public Map<UUID, Product> getAllProducts(){
+    public Map<UUID, Product> getAllProducts() {
         return storageService.getProducts();
     }
 
     @GetMapping("/articles")
-    public Map<UUID, Article> getAllArticles(){
+    public Map<UUID, Article> getAllArticles() {
         return storageService.getArticles();
     }
 
     @GetMapping("/all")
-    public Map<UUID, Searchable> getAllElements(){
+    public Map<UUID, Searchable> getAllElements() {
         return storageService.getAllElements();
     }
 
     @GetMapping("/search")
-    public List<SearchResult> getFoundElements(@RequestParam("pattern") String pattern){
+    public List<SearchResult> getFoundElements(@RequestParam("pattern") String pattern) {
         return searchService.search(pattern);
     }
 
     @GetMapping("/basket/{id}")
-    public String addProduct(@PathVariable("id") UUID id){
+    public String addProduct(@PathVariable("id") UUID id) {
         basketService.addItem(id);
         return "Продукт успешно добавлен";
     }
 
     @GetMapping("/basket")
-    public UserBasket showBasket(){
+    public UserBasket showBasket() {
         return basketService.getUserBasket();
     }
+
 }
