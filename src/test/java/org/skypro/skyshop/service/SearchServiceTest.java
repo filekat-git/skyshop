@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.skypro.skyshop.model.product.Product;
@@ -25,8 +24,9 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class SearchServiceTest {
 
-    @Mock
-    private StorageService storageService;
+    //    @Mock
+    //    private StorageService storageService;
+    private StorageService storageService = Mockito.mock(StorageService.class);
 
     @InjectMocks
     private SearchService searchService;
@@ -52,6 +52,7 @@ public class SearchServiceTest {
         List<SearchResult> result = searchService.search(stringParam);
 
         Assertions.assertEquals(2, result.size());
+        Assertions.assertTrue(result.get(0).getName().contains("Мяч"));
     }
 
     @Test
